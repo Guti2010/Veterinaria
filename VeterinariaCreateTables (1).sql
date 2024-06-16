@@ -94,14 +94,21 @@ CREATE TABLE CarritoCliente (
 );
 
 CREATE TABLE UsuarioAudit (
-    IDUsuarioAudit INT PRIMARY KEY IDENTITY,
-    IDUsuario INT NOT NULL,
-    NombreViejo NVARCHAR(100) NOT NULL,
-    NombreNuevo NVARCHAR(100) NOT NULL,
-    CorreoViejo NVARCHAR(264) NOT NULL,
-    CorreoNuevo NVARCHAR(264) NOT NULL,
-    Fecha DATE NOT NULL,
-    FOREIGN KEY (IDUsuario) REFERENCES Usuario(IDUsuario)
+	IDUsuarioAudit INT PRIMARY KEY IDENTITY,
+	IDUsuario INT NOT NULL,
+	NombreViejo NVARCHAR(100) NOT NULL,
+	NombreNuevo NVARCHAR(100) NOT NULL,
+	IDTipoUsuarioViejo INT NOT NULL,
+	IDTipoUsuarioNuevo INT NOT NULL,
+	CorreoViejo NVARCHAR(264) NOT NULL,
+	CorreoNuevo NVARCHAR(264) NOT NULL,
+	IDSucursalViejo INT NOT NULL,
+	IDSucursalNuevo INT NOT NULL
+
+	FOREIGN KEY (IDTipoUsuarioViejo) REFERENCES TipoUsuario(IDTipoUsuario),
+	FOREIGN KEY (IDTipoUsuarioNuevo) REFERENCES TipoUsuario(IDTipoUsuario),
+	FOREIGN KEY (IDSucursalViejo) REFERENCES Sucursal(IDSucursal),
+	FOREIGN KEY (IDSucursalNuevo) REFERENCES Sucursal(IDSucursal)
 );
 
 CREATE TABLE Reseña (
